@@ -11,7 +11,3 @@ import Foundation
 struct Gif {
     let url: String
 }
-
-struct GifViewModel {
-    let gif: Gif
-}

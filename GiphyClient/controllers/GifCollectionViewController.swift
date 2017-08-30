@@ -12,6 +12,8 @@ private let reuseIdentifier = "Cell"
 
 class GifCollectionViewController: UICollectionViewController {
 
+    var viewModel: GifCollectionViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +24,10 @@ class GifCollectionViewController: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        
+        self.viewModel.loadGifs(amount: 12) {
+            self.collectionView!.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,19 +49,19 @@ class GifCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return self.viewModel.gifs.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
-        // Configure the cell
+        // Configure the cell        
     
         return cell
     }

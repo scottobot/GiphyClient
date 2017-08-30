@@ -15,9 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let gifService = GiphyService()
-        if let rootViewController: ViewController = window?.rootViewController as? ViewController {
-            rootViewController.gifService = gifService
+        let service = GiphyService()
+        let viewModel = GifCollectionViewModel(gifService: service)
+        if let rootViewController: GifCollectionViewController = window?.rootViewController as? GifCollectionViewController {
+            rootViewController.viewModel = viewModel
         }
         return true
     }
