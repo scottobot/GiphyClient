@@ -14,9 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let gifService = GiphyService()
+        if let rootViewController: ViewController = window?.rootViewController as? ViewController {
+            rootViewController.gifService = gifService
+        }
         return true
     }
 

@@ -14,6 +14,9 @@
 		D203E9E51F56734300460042 /* GiphyClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D203E9E31F56734300460042 /* GiphyClient.xcdatamodeld */; };
 		D203E9E71F56734300460042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D203E9E61F56734300460042 /* Assets.xcassets */; };
 		D203E9EA1F56734300460042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D203E9E81F56734300460042 /* LaunchScreen.storyboard */; };
+		D203E9F61F56786100460042 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F51F56786100460042 /* Gif.swift */; };
+		D203E9F81F56799F00460042 /* GiphyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F71F56799F00460042 /* GiphyService.swift */; };
+		D203E9FA1F567C5C00460042 /* GifCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		D203E9E61F56734300460042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D203E9E91F56734300460042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D203E9EB1F56734300460042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D203E9F51F56786100460042 /* Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gif.swift; path = models/Gif.swift; sourceTree = "<group>"; };
+		D203E9F71F56799F00460042 /* GiphyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GiphyService.swift; path = services/GiphyService.swift; sourceTree = "<group>"; };
+		D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewController.swift; path = controllers/GifCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,10 @@
 		D203E9DB1F56734300460042 /* GiphyClient */ = {
 			isa = PBXGroup;
 			children = (
+				D203E9F41F5677EC00460042 /* services */,
+				D203E9F31F5677E300460042 /* controllers */,
+				D203E9F21F5677DC00460042 /* views */,
+				D203E9F11F5677D500460042 /* models */,
 				D203E9DC1F56734300460042 /* AppDelegate.swift */,
 				D203E9DE1F56734300460042 /* ViewController.swift */,
 				D203E9E01F56734300460042 /* Main.storyboard */,
@@ -89,6 +99,37 @@
 				D203E9E31F56734300460042 /* GiphyClient.xcdatamodeld */,
 			);
 			path = GiphyClient;
+			sourceTree = "<group>";
+		};
+		D203E9F11F5677D500460042 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				D203E9F51F56786100460042 /* Gif.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		D203E9F21F5677DC00460042 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		D203E9F31F5677E300460042 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		D203E9F41F5677EC00460042 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				D203E9F71F56799F00460042 /* GiphyService.swift */,
+			);
+			name = services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,8 +257,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D203E9DF1F56734300460042 /* ViewController.swift in Sources */,
+				D203E9FA1F567C5C00460042 /* GifCollectionViewController.swift in Sources */,
 				D203E9DD1F56734300460042 /* AppDelegate.swift in Sources */,
+				D203E9F61F56786100460042 /* Gif.swift in Sources */,
 				D203E9E51F56734300460042 /* GiphyClient.xcdatamodeld in Sources */,
+				D203E9F81F56799F00460042 /* GiphyService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +429,7 @@
 				D203E9F01F56734300460042 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
