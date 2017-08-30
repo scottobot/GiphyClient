@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110C2B8390E26E15EC8C54ED /* Pods_GiphyClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609C5283D8D8AE812DBD3E73 /* Pods_GiphyClient.framework */; };
 		D203E9DD1F56734300460042 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9DC1F56734300460042 /* AppDelegate.swift */; };
 		D203E9DF1F56734300460042 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9DE1F56734300460042 /* ViewController.swift */; };
 		D203E9E21F56734300460042 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D203E9E01F56734300460042 /* Main.storyboard */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		609C5283D8D8AE812DBD3E73 /* Pods_GiphyClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E1EA6173720D7847E8E1372 /* Pods-GiphyClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GiphyClient/Pods-GiphyClient.debug.xcconfig"; sourceTree = "<group>"; };
+		82567CC1313A68B45BAA0D48 /* Pods-GiphyClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-GiphyClient/Pods-GiphyClient.release.xcconfig"; sourceTree = "<group>"; };
 		D203E9D91F56734300460042 /* GiphyClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D203E9DC1F56734300460042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D203E9DE1F56734300460042 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				110C2B8390E26E15EC8C54ED /* Pods_GiphyClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BDC256DAA14E0444C95F216 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				609C5283D8D8AE812DBD3E73 /* Pods_GiphyClient.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7A749FBDFCC0EC6E959D7A8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6E1EA6173720D7847E8E1372 /* Pods-GiphyClient.debug.xcconfig */,
+				82567CC1313A68B45BAA0D48 /* Pods-GiphyClient.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D203E9D01F56734200460042 = {
 			isa = PBXGroup;
 			children = (
 				D203E9DB1F56734300460042 /* GiphyClient */,
 				D203E9DA1F56734300460042 /* Products */,
+				B7A749FBDFCC0EC6E959D7A8 /* Pods */,
+				4BDC256DAA14E0444C95F216 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D203E9EE1F56734300460042 /* Build configuration list for PBXNativeTarget "GiphyClient" */;
 			buildPhases = (
+				110D5088C10DC8D9CD84D132 /* [CP] Check Pods Manifest.lock */,
 				D203E9D51F56734300460042 /* Sources */,
 				D203E9D61F56734300460042 /* Frameworks */,
 				D203E9D71F56734300460042 /* Resources */,
+				337E1D156ED110E467599010 /* [CP] Embed Pods Frameworks */,
+				F8044EA6C144F3C13C26DC26 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -134,6 +161,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		110D5088C10DC8D9CD84D132 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		337E1D156ED110E467599010 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyClient/Pods-GiphyClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8044EA6C144F3C13C26DC26 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyClient/Pods-GiphyClient-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D203E9D51F56734300460042 /* Sources */ = {
@@ -265,6 +340,7 @@
 		};
 		D203E9EF1F56734300460042 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E1EA6173720D7847E8E1372 /* Pods-GiphyClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AQ3XSR79XW;
@@ -278,6 +354,7 @@
 		};
 		D203E9F01F56734300460042 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82567CC1313A68B45BAA0D48 /* Pods-GiphyClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AQ3XSR79XW;
