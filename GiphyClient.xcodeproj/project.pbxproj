@@ -213,7 +213,7 @@
 					D203E9D81F56734300460042 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = AQ3XSR79XW;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -439,11 +439,14 @@
 			baseConfigurationReference = 6E1EA6173720D7847E8E1372 /* Pods-GiphyClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = AQ3XSR79XW;
 				INFOPLIST_FILE = GiphyClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scottobot.GiphyClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "97d9c7cd-f6b0-4e4e-bde9-aede0089d03e";
+				PROVISIONING_PROFILE_SPECIFIER = GiphyClient;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -453,11 +456,14 @@
 			baseConfigurationReference = 82567CC1313A68B45BAA0D48 /* Pods-GiphyClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = AQ3XSR79XW;
 				INFOPLIST_FILE = GiphyClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scottobot.GiphyClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "97d9c7cd-f6b0-4e4e-bde9-aede0089d03e";
+				PROVISIONING_PROFILE_SPECIFIER = GiphyClient;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
