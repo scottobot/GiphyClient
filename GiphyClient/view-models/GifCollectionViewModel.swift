@@ -40,7 +40,7 @@ class GifCollectionViewModel {
         for _ in 1...amount {
             gifService.getRandomGif() { (gif) in
                 if let randomGif = gif {
-                    print("   ", randomGif.url ?? "Gif data failed to load", randomGif.frames!)
+                    print("   ", randomGif.url ?? "Gif data failed to load")
                     self.gifs.append(randomGif)
                 }
                 count += 1

@@ -62,8 +62,24 @@ class GifCollectionViewController: UICollectionViewController {
     }
     
     func loadMore(amount: Int) {
+        return
+        let startIndex = self.viewModel.dataSize
         self.viewModel.loadData(amount: amount) {
-            self.collectionView!.reloadData()
+            if startIndex == 0 {
+                self.collectionView!.reloadData()
+            }
+            else {
+                self.collectionView!.performBatchUpdates({ () -> Void in
+                    var indexPaths: [IndexPath] = []
+                    let endIndex = startIndex + amount
+                    for i in startIndex..<endIndex {
+                        let indexPath = IndexPath(item: i, section: 0)
+                        indexPaths.append(indexPath)
+                    }
+                    self.collectionView!.insertItems(at: indexPaths)
+                    
+                }, completion: nil)
+            }
         }
     }
 
@@ -80,10 +96,8 @@ class GifCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item < self.viewModel.dataSize {
-            //if indexPath.item == (self.viewModel.dataSize - self.pageSize + 1) {
-            //    self.loadMore(amount: self.pageSize)
-            //}
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gifViewCellIdentifier, for: indexPath) as! GifCollectionViewCell
+            cell.imageView.image = nil
             cell.backgroundColor = self.appColors.getRandomColor()
             viewModel.loadGif(index: indexPath.item) { (data) in
                 if let data = data {
@@ -102,12 +116,6 @@ class GifCollectionViewController: UICollectionViewController {
             return cell
         }
     }
-    
-//    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        if indexPath.row == self.viewModel.dataSize - 1 {
-//            self.loadMore(amount: self.additionalLoadAmount)
-//        }
-//    }
 
     // MARK: UICollectionViewDelegate
 
