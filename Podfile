@@ -5,6 +5,6 @@ target 'GiphyClient' do
   pod 'ObjectMapper', '~> 2.2'
   pod 'Alamofire', '~> 4.4'
   pod 'AlamofireImage', '~> 3.2'
-  pod 'Gifu'
+  pod 'SwiftyGif'
   pod 'CHTCollectionViewWaterfallLayout/Swift'
 end

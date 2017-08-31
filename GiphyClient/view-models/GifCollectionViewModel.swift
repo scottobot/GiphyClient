@@ -11,15 +11,10 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-enum LoadState {
-    case idle
-    case loading
-}
-
 class GifCollectionViewModel {
     let gifService: GifService
     
-    var loadState = LoadState.idle
+    var isLoading = false
     var gifs: [Gif] = []
     
     var dataSize: Int {
@@ -31,25 +26,25 @@ class GifCollectionViewModel {
     }
     
     func loadData(amount: Int, completion: @escaping (Bool) -> Void) {
-        guard self.loadState == .idle else {
+        guard !self.isLoading else {
             completion(false)
             return
         }
-        self.loadState = .loading
+        self.isLoading = true
         
-        print("=== Loading \(amount) gifs...")
+        //print("=== Loading \(amount) gifs...")
         
         var count = 0
         for _ in 1...amount {
             gifService.getRandomGif() { (gif) in
                 if let randomGif = gif {
-                    print("   ", randomGif.url ?? "Gif data failed to load")
+                    //print("   ", randomGif.url ?? "Gif data failed to load")
                     self.gifs.append(randomGif)
                 }
                 count += 1
                 if count == amount {
-                    print("    Loading complete!")
-                    self.loadState = .idle
+                    //print("    Loading complete!")
+                    self.isLoading = false
                     completion(true)
                 }
             }
@@ -57,24 +52,27 @@ class GifCollectionViewModel {
     }
     
     func loadGif(index: Int, completion: @escaping (Data?, String?) -> Void) {
-        let gif = self.gifs[index]
-        guard let gifUrl = gif.url else {
+        var gif = self.gifs[index]
+        guard let gifUrl = gif.url, !gif.isLoading else {
             completion(nil, nil)
             return
         }
         if let gifData = gif.cachedData {
+            //print("<<< found cache for index \(index)")
             completion(gifData, gifUrl)
             return
         }
+        //print(">>> loading \(gifUrl) for index \(index)")
+        gif.isLoading = true
         let gifIndex = index
         Alamofire.request(gifUrl).responseData { response in
             //debugPrint(response)
             //print(response.request)
             //print(response.response)
             //debugPrint(response.result)
-            if let data = response.data {
-                self.gifs[gifIndex].cachedData = data
-            }
+            //print("<<< loading success for index \(index)")
+            self.gifs[gifIndex].isLoading = false
+            self.gifs[gifIndex].cachedData = response.data
             completion(response.data, gifUrl)
         }
     }

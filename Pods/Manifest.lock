@@ -3,23 +3,23 @@ PODS:
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
   - CHTCollectionViewWaterfallLayout/Swift (0.9.6)
-  - Gifu (2.0.1)
   - ObjectMapper (2.2.8)
+  - SwiftyGif (3.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.2)
   - CHTCollectionViewWaterfallLayout/Swift
-  - Gifu
   - ObjectMapper (~> 2.2)
+  - SwiftyGif
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   CHTCollectionViewWaterfallLayout: f4dab06db57b36dcf29e802594175acc76c56615
-  Gifu: 90bd26ea4d65f8322c4cca8cbb0ca1418f5457ad
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
+  SwiftyGif: aad44b7ef0ad1d599ba83d7aa5759e916b520c42
 
-PODFILE CHECKSUM: 9f0d29e4dc614bfe8ae2c17e4cf9b93438793164
+PODFILE CHECKSUM: 9e282a77133efb75a6fa304a583a35f38f88ceaa
 
 COCOAPODS: 1.2.0

@@ -15,18 +15,20 @@ protocol Gif {
     var width: CGFloat? { get }
     var height: CGFloat? { get }
     var cachedData: Data? { get set }
+    var isLoading: Bool { get set }
 }
 
-struct GiphyGif: Gif, Mappable {
+class GiphyGif: Gif, Mappable {
     var url: String?
     var frames: Int?
     var width: CGFloat?
     var height: CGFloat?
     var cachedData: Data?
+    var isLoading = false
     
-    init?(map: Map) {}
+    required init?(map: Map) {}
     
-    mutating func mapping(map: Map) {
+    func mapping(map: Map) {
         url         <- map["data.image_url"]
         frames      <- (map["data.image_frames"], IntTransform())
         width       <- (map["data.image_width"], CGFloatTransform())
@@ -34,10 +36,11 @@ struct GiphyGif: Gif, Mappable {
     }
 }
 
-struct TestGif: Gif {
+class TestGif: Gif {
     var url: String?
     var frames: Int?
     var width: CGFloat?
     var height: CGFloat?
     var cachedData: Data?
+    var isLoading = false
 }
