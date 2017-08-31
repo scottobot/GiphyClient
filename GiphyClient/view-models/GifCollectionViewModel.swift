@@ -22,6 +22,10 @@ class GifCollectionViewModel {
     var loadState = LoadState.idle
     var gifs: [Gif] = []
     
+    var dataSize: Int {
+        return self.gifs.count
+    }
+    
     init(gifService: GifService) {
         self.gifService = gifService
     }
@@ -36,12 +40,12 @@ class GifCollectionViewModel {
         for _ in 1...amount {
             gifService.getRandomGif() { (gif) in
                 if let randomGif = gif {
-                    print("===", randomGif.url ?? "Gif data failed to load")
+                    print("   ", randomGif.url ?? "Gif data failed to load", randomGif.frames!)
                     self.gifs.append(randomGif)
                 }
                 count += 1
                 if count == amount {
-                    print("=== Loading complete!")
+                    print("    Loading complete!")
                     self.loadState = .idle
                     completion()
                 }
@@ -55,11 +59,17 @@ class GifCollectionViewModel {
             completion(nil)
             return
         }
+        if let gifData = gif.cachedData {
+            completion(gifData)
+            return
+        }
+        let gifIndex = index
         Alamofire.request(gifUrl).responseData { response in
             //debugPrint(response)
             //print(response.request)
             //print(response.response)
             //debugPrint(response.result)
+            self.gifs[gifIndex].cachedData = response.data
             completion(response.data)
         }
     }
@@ -70,9 +80,4 @@ class GifCollectionViewModel {
         guard let gifHeight = gif.height else { return width }
         return width * (gifHeight / gifWidth)
     }
-    
-    func gif(at index: Int) -> Gif {
-        return self.gifs[index]
-    }
-    
 }

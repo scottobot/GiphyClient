@@ -33,4 +33,9 @@ class GifCollectionViewCell: UICollectionViewCell {
         let gifImage = UIImage(gifData: data)
         self.imageView.setGifImage(gifImage, manager: self.gifManager)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.imageView.image = nil
+    }
 }

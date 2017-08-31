@@ -38,6 +38,7 @@ class GiphyService: GifService {
 class TestGifService: GifService {
     func getRandomGif(completion: @escaping (Gif?) -> Void) {
         var gif = TestGif()
+        gif.frames = 1
         gif.width = CGFloat(Int.random(200..<400))
         gif.height = CGFloat(Int.random(200..<400))
         completion(gif)

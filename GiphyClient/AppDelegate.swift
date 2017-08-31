@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func initRootViewController() {
-        let service = TestGifService()
-        //let service = GiphyService()
+        //let service = TestGifService()
+        let service = GiphyService()
         let viewModel = GifCollectionViewModel(gifService: service)
         let navController = self.window?.rootViewController as! UINavigationController
         let viewController = navController.topViewController as! GifCollectionViewController
