@@ -63,7 +63,8 @@ class GifCollectionViewController: UICollectionViewController {
     
     func loadMore(amount: Int) {
         let startIndex = self.viewModel.dataSize
-        self.viewModel.loadData(amount: amount) {
+        self.viewModel.loadData(amount: amount) { success in
+            guard success else { return }
             if startIndex == 0 {
                 self.collectionView!.reloadData()
             }
@@ -95,7 +96,6 @@ class GifCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gifViewCellIdentifier, for: indexPath) as! GifCollectionViewCell
-        cell.imageView.image = nil
         cell.backgroundColor = self.appColors.getRandomColor()
         viewModel.loadGif(index: indexPath.item) { (data) in
             if let data = data {

@@ -30,8 +30,11 @@ class GifCollectionViewModel {
         self.gifService = gifService
     }
     
-    func loadData(amount: Int, completion: @escaping () -> Void) {
-        guard self.loadState == .idle else { return }
+    func loadData(amount: Int, completion: @escaping (Bool) -> Void) {
+        guard self.loadState == .idle else {
+            completion(false)
+            return
+        }
         self.loadState = .loading
         
         print("=== Loading \(amount) gifs...")
@@ -47,7 +50,7 @@ class GifCollectionViewModel {
                 if count == amount {
                     print("    Loading complete!")
                     self.loadState = .idle
-                    completion()
+                    completion(true)
                 }
             }
         }

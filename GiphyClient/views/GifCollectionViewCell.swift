@@ -35,5 +35,6 @@ class GifCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.imageView.prepareForReuse()
+        self.imageView.image = nil
     }
 }
