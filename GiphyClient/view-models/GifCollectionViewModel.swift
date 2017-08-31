@@ -32,21 +32,25 @@ class GifCollectionViewModel {
         }
         self.isLoading = true
         
-        //print("=== Loading \(amount) gifs...")
+        print("=== Loading \(amount) gifs...")
         
-        var count = 0
-        for _ in 1...amount {
-            gifService.getRandomGif() { (gif) in
-                if let randomGif = gif {
-                    //print("   ", randomGif.url ?? "Gif data failed to load")
-                    self.gifs.append(randomGif)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let loadGroup = DispatchGroup()
+            for _ in 1...amount {
+                loadGroup.enter()
+                self.gifService.getRandomGif() { (gif) in
+                    if let randomGif = gif {
+                        print("   ", randomGif.url ?? "Gif data failed to load")
+                        self.gifs.append(randomGif)
+                    }
+                    loadGroup.leave()
                 }
-                count += 1
-                if count == amount {
-                    //print("    Loading complete!")
-                    self.isLoading = false
-                    completion(true)
-                }
+            }
+            loadGroup.wait()
+            print("    Loading complete!")
+            self.isLoading = false
+            DispatchQueue.main.async {
+                completion(true)
             }
         }
     }
@@ -66,10 +70,6 @@ class GifCollectionViewModel {
         gif.isLoading = true
         let gifIndex = index
         Alamofire.request(gifUrl).responseData { response in
-            //debugPrint(response)
-            //print(response.request)
-            //print(response.response)
-            //debugPrint(response.result)
             //print("<<< loading success for index \(index)")
             self.gifs[gifIndex].isLoading = false
             self.gifs[gifIndex].cachedData = response.data
