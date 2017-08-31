@@ -7,16 +7,14 @@
 //
 
 import UIKit
-import SwiftyGif
+import Gifu
 
 class GifCollectionViewCell: UICollectionViewCell {
-    let gifManager = SwiftyGifManager(memoryLimit:20)
-    
-    var imageView: UIImageView!
+    var imageView: GIFImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.imageView = UIImageView()
+        self.imageView = GIFImageView()
         self.contentView.addSubview(self.imageView)
     }
     
@@ -29,14 +27,13 @@ class GifCollectionViewCell: UICollectionViewCell {
         self.imageView.frame = self.contentView.frame
     }
     
-    func displayGif(data: UIImage) {
-        self.imageView.setGifImage(data, manager: self.gifManager)
-        self.imageView.startAnimatingGif()
+    func displayGif(data: Data) {
+        self.imageView.prepareForAnimation(withGIFData: data)
+        self.imageView.startAnimatingGIF()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.imageView.stopAnimatingGif()
-        self.imageView.image = nil
+        self.imageView.prepareForReuse()
     }
 }

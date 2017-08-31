@@ -53,7 +53,7 @@ class GifCollectionViewModel {
         }
     }
     
-    func loadGif(index: Int, completion: @escaping (UIImage?) -> Void) {
+    func loadGif(index: Int, completion: @escaping (Data?) -> Void) {
         let gif = self.gifs[index]
         guard let gifUrl = gif.url else {
             completion(nil)
@@ -69,9 +69,10 @@ class GifCollectionViewModel {
             //print(response.request)
             //print(response.response)
             //debugPrint(response.result)
-            let gifImage = UIImage(gifData: response.data!, levelOfIntegrity: 1.0)
-            self.gifs[gifIndex].cachedData = gifImage
-            completion(gifImage)
+            if let data = response.data {
+                self.gifs[gifIndex].cachedData = data
+            }
+            completion(response.data)
         }
     }
     
