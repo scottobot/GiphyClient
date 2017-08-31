@@ -10,7 +10,7 @@ GiphyClient is a sweet little app for viewing random gifs.
 
 ### Instructions
 
-GiphyClient is compatible with Xcode 8.x (Swift 3.x)
+#### GiphyClient is compatible with Xcode 8.x (Swift 3.x)
 
 1. Download or check out this repository.
 
