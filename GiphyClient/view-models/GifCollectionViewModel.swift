@@ -12,10 +12,12 @@ import Alamofire
 
 class GifCollectionViewModel {
     private let gifService: GifService
-    private var isLoading = false
+    private var isLoadDataPending = false
     private var gifs: [Gif] = []
     private var pendingUrls: [String] = []
     private var cache: [String: Data] = [:]
+    private var resetFlag = false
+    private var onReset: (() -> Void)?
     
     var dataSize: Int {
         return self.gifs.count
@@ -25,12 +27,29 @@ class GifCollectionViewModel {
         self.gifService = gifService
     }
     
+    func reset(completion: @escaping () -> Void) {
+        guard !self.resetFlag else { return }
+        self.onReset = completion
+        if self.isLoadDataPending {
+            self.resetFlag = true
+        }
+        else {
+            self.performReset()
+        }
+    }
+    
+    private func performReset() {
+        self.resetFlag = false
+        self.gifs.removeAll()
+        self.onReset?()
+    }
+    
     func loadData(amount: Int, completion: @escaping (Bool) -> Void) {
-        guard !self.isLoading else {
+        guard !self.isLoadDataPending else {
             completion(false)
             return
         }
-        self.isLoading = true
+        self.isLoadDataPending = true
         
         print("=== Loading \(amount) gifs...")
         
@@ -48,9 +67,15 @@ class GifCollectionViewModel {
             }
             loadGroup.wait()
             print("    Loading complete!")
-            self.isLoading = false
+            self.isLoadDataPending = false
             DispatchQueue.main.async {
-                completion(true)
+                if self.resetFlag {
+                    completion(false)
+                    self.performReset()
+                }
+                else {
+                    completion(true)
+                }
             }
         }
     }

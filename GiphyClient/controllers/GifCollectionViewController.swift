@@ -27,6 +27,7 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
         
         self.setupNavBar()
         self.setupLayout()
+        self.setupPullToRefresh()
 
         self.loadMore(amount: self.initialPageSize)
     }
@@ -52,6 +53,22 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
         // Collection view attributes
         self.collectionView!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.collectionView!.alwaysBounceVertical = true
+    }
+    
+    private func setupPullToRefresh() {
+        if #available(iOS 10.0, *) {
+            let refreshControl = UIRefreshControl()
+            self.collectionView!.refreshControl = refreshControl
+            refreshControl.addTarget(self, action: #selector(refreshGifs(sender:)), for: .valueChanged)
+        }
+    }
+    
+    @objc private func refreshGifs(sender: UIRefreshControl) {
+        sender.endRefreshing()
+        self.viewModel.reset() {
+            self.collectionView!.reloadData()
+            self.loadMore(amount: self.initialPageSize)
+        }
     }
     
     private func loadMore(amount: Int) {
