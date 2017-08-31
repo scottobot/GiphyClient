@@ -15,7 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.applyStyles()
+        self.initRootViewController()
         return true
+    }
+    
+    func initRootViewController() {
+        let service = TestGifService()
+        //let service = GiphyService()
+        let viewModel = GifCollectionViewModel(gifService: service)
+        let navController = self.window?.rootViewController as! UINavigationController
+        let viewController = navController.topViewController as! GifCollectionViewController
+        viewController.viewModel = viewModel
+        self.window?.rootViewController = navController
+    }
+    
+    func applyStyles() {
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().barTintColor = UIColor.black
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

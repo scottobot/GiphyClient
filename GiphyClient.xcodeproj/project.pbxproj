@@ -17,7 +17,6 @@
 		D203E9F81F56799F00460042 /* GifService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F71F56799F00460042 /* GifService.swift */; };
 		D203E9FA1F567C5C00460042 /* GifCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */; };
 		D25EF9891F572C3000B70C37 /* GifCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */; };
-		D25EF98E1F57B8BB00B70C37 /* AppInitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF98D1F57B8BB00B70C37 /* AppInitViewController.swift */; };
 		D25EF9911F57C25600B70C37 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9901F57C25600B70C37 /* AppColors.swift */; };
 		D25EF9961F57C50000B70C37 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9951F57C50000B70C37 /* Collection.swift */; };
 		D25EF9981F57C76200B70C37 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9971F57C76200B70C37 /* UIColor.swift */; };
@@ -42,7 +41,6 @@
 		D203E9F71F56799F00460042 /* GifService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifService.swift; path = services/GifService.swift; sourceTree = "<group>"; };
 		D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewController.swift; path = controllers/GifCollectionViewController.swift; sourceTree = "<group>"; };
 		D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewModel.swift; path = "view-models/GifCollectionViewModel.swift"; sourceTree = "<group>"; };
-		D25EF98D1F57B8BB00B70C37 /* AppInitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppInitViewController.swift; path = controllers/AppInitViewController.swift; sourceTree = "<group>"; };
 		D25EF9901F57C25600B70C37 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppColors.swift; path = utils/AppColors.swift; sourceTree = "<group>"; };
 		D25EF9951F57C50000B70C37 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Collection.swift; path = extensions/Collection.swift; sourceTree = "<group>"; };
 		D25EF9971F57C76200B70C37 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = extensions/UIColor.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 		D203E9F31F5677E300460042 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D25EF98D1F57B8BB00B70C37 /* AppInitViewController.swift */,
 				D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */,
 			);
 			name = controllers;
@@ -314,7 +311,6 @@
 				D25EF99E1F57D7C600B70C37 /* GifCollectionViewCell.swift in Sources */,
 				D203E9E51F56734300460042 /* GiphyClient.xcdatamodeld in Sources */,
 				D25EF9911F57C25600B70C37 /* AppColors.swift in Sources */,
-				D25EF98E1F57B8BB00B70C37 /* AppInitViewController.swift in Sources */,
 				D203E9F81F56799F00460042 /* GifService.swift in Sources */,
 				D25EF9981F57C76200B70C37 /* UIColor.swift in Sources */,
 				D25EF99A1F57D2C500B70C37 /* IntTransform.swift in Sources */,

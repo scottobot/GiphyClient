@@ -30,15 +30,18 @@ class GifCollectionViewModel {
         guard self.loadState == .idle else { return }
         self.loadState = .loading
         
+        print("=== Loading \(amount) gifs...")
+        
         var count = 0
         for _ in 1...amount {
             gifService.getRandomGif() { (gif) in
                 if let randomGif = gif {
-                    print("===", randomGif.url ?? "FAIL")
+                    print("===", randomGif.url ?? "Gif data failed to load")
                     self.gifs.append(randomGif)
                 }
                 count += 1
                 if count == amount {
+                    print("=== Loading complete!")
                     self.loadState = .idle
                     completion()
                 }
@@ -53,12 +56,10 @@ class GifCollectionViewModel {
             return
         }
         Alamofire.request(gifUrl).responseData { response in
-            debugPrint(response)
-            
-            print(response.request)
-            print(response.response)
-            debugPrint(response.result)
-           
+            //debugPrint(response)
+            //print(response.request)
+            //print(response.response)
+            //debugPrint(response.result)
             completion(response.data)
         }
     }

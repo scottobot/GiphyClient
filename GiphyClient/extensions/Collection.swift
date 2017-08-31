@@ -30,3 +30,9 @@ extension MutableCollection where Index == Int {
         }
     }
 }
+
+extension Array {
+    func random() -> Iterator.Element {
+        return self[Int(arc4random_uniform(UInt32(self.count)))]
+    }
+}

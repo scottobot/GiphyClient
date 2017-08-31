@@ -24,13 +24,21 @@ class GifCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Register cell classes
         self.collectionView!.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
+        self.setupNavBar()
         self.setupLayout()
 
-        // Do any additional setup after loading the view.
         self.loadMore(amount: self.initialLoadAmount)
+    }
+    
+    func setupNavBar() {
+        if let image = UIImage(named: "GiphyLogoWithTitle"), let navBar = self.navigationController?.navigationBar {
+            let imageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: navBar.frame.size.width, height: navBar.frame.size.height * 0.8))
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = image
+            self.navigationItem.titleView = imageView
+        }
     }
     
     func setupLayout() {
@@ -53,7 +61,6 @@ class GifCollectionViewController: UICollectionViewController {
     
     func loadMore(amount: Int) {
         self.viewModel.loadData(amount: amount) {
-            print("=== ALL LOADED!")
             self.collectionView!.reloadData()
         }
     }
