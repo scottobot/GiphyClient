@@ -14,8 +14,9 @@ class GifCollectionViewController: UICollectionViewController {
 
     let initialLoadAmount = 12
     let additionalLoadAmount = 4
-    let itemsPerRow: CGFloat = 2
-    let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+    let itemsPerRow = CGFloat(2)
+    let sectionInsets = UIEdgeInsets(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
+    var appColors = AppColors()
     
     var viewModel: GifCollectionViewModel!
     
@@ -69,7 +70,7 @@ class GifCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
-        cell.backgroundColor = UIColor.black
+        cell.backgroundColor = self.appColors.getRandomColor()
     
         return cell
     }
