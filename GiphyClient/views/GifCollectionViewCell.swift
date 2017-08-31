@@ -29,13 +29,14 @@ class GifCollectionViewCell: UICollectionViewCell {
         self.imageView.frame = self.contentView.frame
     }
     
-    func displayGif(data: Data) {
-        let gifImage = UIImage(gifData: data)
-        self.imageView.setGifImage(gifImage, manager: self.gifManager)
+    func displayGif(data: UIImage) {
+        self.imageView.setGifImage(data, manager: self.gifManager)
+        self.imageView.startAnimatingGif()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.imageView.stopAnimatingGif()
         self.imageView.image = nil
     }
 }

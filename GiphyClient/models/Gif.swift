@@ -14,7 +14,7 @@ protocol Gif {
     var frames: Int? { get }
     var width: CGFloat? { get }
     var height: CGFloat? { get }
-    var cachedData: Data? { get set }
+    var cachedData: UIImage? { get set }
 }
 
 struct GiphyGif: Gif, Mappable {
@@ -22,7 +22,7 @@ struct GiphyGif: Gif, Mappable {
     var frames: Int?
     var width: CGFloat?
     var height: CGFloat?
-    var cachedData: Data?
+    var cachedData: UIImage?
     
     init?(map: Map) {}
     
@@ -39,5 +39,5 @@ struct TestGif: Gif {
     var frames: Int?
     var width: CGFloat?
     var height: CGFloat?
-    var cachedData: Data?
+    var cachedData: UIImage?
 }
