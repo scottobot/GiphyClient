@@ -27,23 +27,6 @@ class GifCollectionViewModel {
         self.gifService = gifService
     }
     
-    func reset(completion: @escaping () -> Void) {
-        guard !self.resetFlag else { return }
-        self.onReset = completion
-        if self.isLoadDataPending {
-            self.resetFlag = true
-        }
-        else {
-            self.performReset()
-        }
-    }
-    
-    private func performReset() {
-        self.resetFlag = false
-        self.gifs.removeAll()
-        self.onReset?()
-    }
-    
     func loadData(amount: Int, completion: @escaping (Bool) -> Void) {
         guard !self.isLoadDataPending else {
             completion(false)
@@ -112,5 +95,22 @@ class GifCollectionViewModel {
     
     func url(index: Int) -> String? {
         return self.gifs[index].url
+    }
+    
+    func reset(completion: @escaping () -> Void) {
+        guard !self.resetFlag else { return }
+        self.onReset = completion
+        if self.isLoadDataPending {
+            self.resetFlag = true
+        }
+        else {
+            self.performReset()
+        }
+    }
+    
+    private func performReset() {
+        self.resetFlag = false
+        self.gifs.removeAll()
+        self.onReset?()
     }
 }
