@@ -24,6 +24,11 @@ class GifCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.imageView.frame = self.contentView.frame
+    }
+    
     func displayGif(data: Data) {
         let gifImage = UIImage(gifData: data)
         self.imageView.setGifImage(gifImage, manager: self.gifManager)
