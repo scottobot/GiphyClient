@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CHTCollectionViewWaterfallLayout
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,10 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //let service = TestGifService()
         let service = GiphyService()
         let viewModel = GifCollectionViewModel(gifService: service)
-        let navController = self.window?.rootViewController as! UINavigationController
-        let viewController = navController.topViewController as! GifCollectionViewController
+        let viewController = GifCollectionViewController(collectionViewLayout: CHTCollectionViewWaterfallLayout())
         viewController.viewModel = viewModel
-        self.window?.rootViewController = navController
+        let navController = self.window?.rootViewController as! UINavigationController
+        navController.viewControllers = [viewController]
     }
     
     func applyStyles() {

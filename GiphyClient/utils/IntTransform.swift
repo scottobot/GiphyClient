@@ -24,6 +24,6 @@ open class IntTransform: TransformType {
     
     open func transformToJSON(_ value: Int?) -> String? {
         guard let value = value else { return nil }
-        return value.description
+        return String(value)
     }
 }

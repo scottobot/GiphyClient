@@ -44,8 +44,7 @@ class GifCollectionViewController: UICollectionViewController {
     }
     
     func setupLayout() {
-        // Create a waterfall layout
-        let layout = CHTCollectionViewWaterfallLayout()
+        let layout = self.collectionView!.collectionViewLayout as! CHTCollectionViewWaterfallLayout
         
         // Change individual layout attributes for the spacing between cells
         layout.columnCount = numColumns
@@ -56,9 +55,6 @@ class GifCollectionViewController: UICollectionViewController {
         // Collection view attributes
         self.collectionView!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.collectionView!.alwaysBounceVertical = true
-        
-        // Add the waterfall layout to your collection view
-        self.collectionView!.collectionViewLayout = layout
     }
     
     func loadMore(amount: Int) {

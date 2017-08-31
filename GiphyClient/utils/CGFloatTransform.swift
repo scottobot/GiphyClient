@@ -24,6 +24,6 @@ open class CGFloatTransform: TransformType {
     
     open func transformToJSON(_ value: CGFloat?) -> String? {
         guard let value = value else { return nil }
-        return value.description
+        return String(format: "%.2f", value)
     }
 }
