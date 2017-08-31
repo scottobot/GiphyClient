@@ -110,10 +110,10 @@ class GifCollectionViewController: UICollectionViewController {
 
 extension GifCollectionViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        let padding = sectionInsets.left * (itemsPerRow + 1)
+        let itemWidth = (self.view.frame.width - padding) / itemsPerRow
+        let itemHeight = self.viewModel.getHeight(width: itemWidth, index: indexPath.row)
+        return CGSize(width: itemWidth, height: itemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum LoadState {
     case idle
@@ -31,7 +32,7 @@ class GifCollectionViewModel {
         for _ in 1...amount {
             gifService.getRandomGif() { (gif) in
                 if let randomGif = gif {
-                    print("===", randomGif.url!)
+                    print("===", randomGif.url ?? "FAIL")
                     self.gifs.append(randomGif)
                 }
                 count += 1
@@ -43,7 +44,15 @@ class GifCollectionViewModel {
         }
     }
     
-    func url(for index: Int) -> String? {
-        return self.gifs[index].url
+    func getHeight(width: CGFloat, index: Int) -> CGFloat {
+        let gif = self.gifs[index]
+        guard let gifWidth = gif.width else { return width }
+        guard let gifHeight = gif.height else { return width }
+        return width * (gifHeight / gifWidth)
     }
+    
+    func gif(at index: Int) -> Gif {
+        return self.gifs[index]
+    }
+    
 }

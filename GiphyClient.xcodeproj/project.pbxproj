@@ -21,6 +21,8 @@
 		D25EF9911F57C25600B70C37 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9901F57C25600B70C37 /* AppColors.swift */; };
 		D25EF9961F57C50000B70C37 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9951F57C50000B70C37 /* Collection.swift */; };
 		D25EF9981F57C76200B70C37 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9971F57C76200B70C37 /* UIColor.swift */; };
+		D25EF99A1F57D2C500B70C37 /* IntTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9991F57D2C500B70C37 /* IntTransform.swift */; };
+		D25EF99C1F57D47E00B70C37 /* CGFloatTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF99B1F57D47E00B70C37 /* CGFloatTransform.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		D25EF9901F57C25600B70C37 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppColors.swift; path = utils/AppColors.swift; sourceTree = "<group>"; };
 		D25EF9951F57C50000B70C37 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Collection.swift; path = extensions/Collection.swift; sourceTree = "<group>"; };
 		D25EF9971F57C76200B70C37 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = extensions/UIColor.swift; sourceTree = "<group>"; };
+		D25EF9991F57D2C500B70C37 /* IntTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntTransform.swift; path = utils/IntTransform.swift; sourceTree = "<group>"; };
+		D25EF99B1F57D47E00B70C37 /* CGFloatTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGFloatTransform.swift; path = utils/CGFloatTransform.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				D25EF9901F57C25600B70C37 /* AppColors.swift */,
+				D25EF9991F57D2C500B70C37 /* IntTransform.swift */,
+				D25EF99B1F57D47E00B70C37 /* CGFloatTransform.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -297,11 +303,13 @@
 				D203E9FA1F567C5C00460042 /* GifCollectionViewController.swift in Sources */,
 				D203E9DD1F56734300460042 /* AppDelegate.swift in Sources */,
 				D203E9F61F56786100460042 /* Gif.swift in Sources */,
+				D25EF99C1F57D47E00B70C37 /* CGFloatTransform.swift in Sources */,
 				D203E9E51F56734300460042 /* GiphyClient.xcdatamodeld in Sources */,
 				D25EF9911F57C25600B70C37 /* AppColors.swift in Sources */,
 				D25EF98E1F57B8BB00B70C37 /* AppInitViewController.swift in Sources */,
 				D203E9F81F56799F00460042 /* GifService.swift in Sources */,
 				D25EF9981F57C76200B70C37 /* UIColor.swift in Sources */,
+				D25EF99A1F57D2C500B70C37 /* IntTransform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
