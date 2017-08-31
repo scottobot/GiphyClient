@@ -15,7 +15,7 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
     private let initialPageSize = 12
     private let pageSize = 4
     private let numColumns = 2
-    private let sectionInsets = UIEdgeInsets(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
+    private let cellPadding = CGFloat(4)
     private var appColors = AppColors()
     
     var viewModel: GifCollectionViewModel!
@@ -46,9 +46,9 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
         
         // Change individual layout attributes for the spacing between cells
         layout.columnCount = numColumns
-        layout.sectionInset = sectionInsets
-        layout.minimumColumnSpacing = sectionInsets.left
-        layout.minimumInteritemSpacing = sectionInsets.left
+        layout.sectionInset = UIEdgeInsets(top: cellPadding, left: cellPadding, bottom: self.view.frame.size.height * 0.5, right: cellPadding)
+        layout.minimumColumnSpacing = cellPadding
+        layout.minimumInteritemSpacing = cellPadding
         
         // Collection view attributes
         self.collectionView!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -119,7 +119,7 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
     // MARK: CHTCollectionViewDelegateWaterfallLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-        let padding = sectionInsets.left * (CGFloat(numColumns) + 1)
+        let padding = cellPadding * (CGFloat(numColumns) + 1)
         let itemWidth = (self.view.frame.width - padding) / CGFloat(numColumns)
         let itemHeight = self.viewModel.getHeight(width: itemWidth, index: indexPath.item)
         return CGSize(width: itemWidth, height: itemHeight)
