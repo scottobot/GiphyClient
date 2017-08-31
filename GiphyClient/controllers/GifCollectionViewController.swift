@@ -96,9 +96,10 @@ class GifCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gifViewCellIdentifier, for: indexPath) as! GifCollectionViewCell
+        cell.url = self.viewModel.url(index: indexPath.item)
         cell.backgroundColor = self.appColors.getRandomColor()
-        viewModel.loadGif(index: indexPath.item) { (data) in
-            if let data = data {
+        viewModel.loadGif(index: indexPath.item) { (data, url) in
+            if let data = data, url == cell.url {
                 cell.backgroundColor = UIColor.black
                 cell.displayGif(data: data)
             }
