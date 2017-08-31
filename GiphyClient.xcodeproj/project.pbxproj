@@ -24,6 +24,7 @@
 		D25EF99A1F57D2C500B70C37 /* IntTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9991F57D2C500B70C37 /* IntTransform.swift */; };
 		D25EF99C1F57D47E00B70C37 /* CGFloatTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF99B1F57D47E00B70C37 /* CGFloatTransform.swift */; };
 		D25EF99E1F57D7C600B70C37 /* GifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF99D1F57D7C600B70C37 /* GifCollectionViewCell.swift */; };
+		D25EF9A01F58467C00B70C37 /* NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF99F1F58467C00B70C37 /* NSNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		D25EF9991F57D2C500B70C37 /* IntTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntTransform.swift; path = utils/IntTransform.swift; sourceTree = "<group>"; };
 		D25EF99B1F57D47E00B70C37 /* CGFloatTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGFloatTransform.swift; path = utils/CGFloatTransform.swift; sourceTree = "<group>"; };
 		D25EF99D1F57D7C600B70C37 /* GifCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewCell.swift; path = views/GifCollectionViewCell.swift; sourceTree = "<group>"; };
+		D25EF99F1F58467C00B70C37 /* NSNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSNumber.swift; path = extensions/NSNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			children = (
 				D25EF9951F57C50000B70C37 /* Collection.swift */,
 				D25EF9971F57C76200B70C37 /* UIColor.swift */,
+				D25EF99F1F58467C00B70C37 /* NSNumber.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D25EF9961F57C50000B70C37 /* Collection.swift in Sources */,
+				D25EF9A01F58467C00B70C37 /* NSNumber.swift in Sources */,
 				D25EF9891F572C3000B70C37 /* GifCollectionViewModel.swift in Sources */,
 				D203E9FA1F567C5C00460042 /* GifCollectionViewController.swift in Sources */,
 				D203E9DD1F56734300460042 /* AppDelegate.swift in Sources */,

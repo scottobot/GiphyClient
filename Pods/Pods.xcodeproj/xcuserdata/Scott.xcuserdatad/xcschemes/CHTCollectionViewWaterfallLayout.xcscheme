@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'FCF1E064878141D8764C1D86FD4822CC'
-               BlueprintName = 'SwiftyGif'
+               BlueprintIdentifier = '83DBBCE523C3F780DFE1B689B272DDE8'
+               BlueprintName = 'CHTCollectionViewWaterfallLayout'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftyGif.framework'>
+               BuildableName = 'CHTCollectionViewWaterfallLayout.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

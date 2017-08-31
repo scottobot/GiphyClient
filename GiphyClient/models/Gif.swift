@@ -31,3 +31,10 @@ struct GiphyGif: Gif, Mappable {
         height      <- (map["data.image_height"], CGFloatTransform())
     }
 }
+
+struct TestGif: Gif {
+    var url: String?
+    var frames: Int?
+    var width: CGFloat?
+    var height: CGFloat?
+}

@@ -30,11 +30,16 @@ class GiphyService: GifService {
                 gif = Mapper<GiphyGif>().map(JSONObject: json)
             }
             
-            //if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                //print("Data: \(utf8Text)") // original server data as UTF8 string
-            //}
-            
             completion(gif)
         }
+    }
+}
+
+class TestGifService: GifService {
+    func getRandomGif(completion: @escaping (Gif?) -> Void) {
+        var gif = TestGif()
+        gif.width = CGFloat(Int.random(200..<400))
+        gif.height = CGFloat(Int.random(200..<400))
+        completion(gif)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CHTCollectionViewWaterfallLayout
 
 private let reuseIdentifier = "GifViewCell"
 
@@ -14,7 +15,7 @@ class GifCollectionViewController: UICollectionViewController {
 
     let initialLoadAmount = 12
     let additionalLoadAmount = 4
-    let itemsPerRow = CGFloat(2)
+    let numColumns = 2
     let sectionInsets = UIEdgeInsets(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
     var appColors = AppColors()
     
@@ -25,14 +26,29 @@ class GifCollectionViewController: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        self.setupLayout()
 
         // Do any additional setup after loading the view.
         self.loadMore(amount: self.initialLoadAmount)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func setupLayout() {
+        // Create a waterfall layout
+        let layout = CHTCollectionViewWaterfallLayout()
+        
+        // Change individual layout attributes for the spacing between cells
+        layout.columnCount = numColumns
+        layout.sectionInset = sectionInsets
+        layout.minimumColumnSpacing = sectionInsets.left
+        layout.minimumInteritemSpacing = sectionInsets.left
+        
+        // Collection view attributes
+        self.collectionView!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        self.collectionView!.alwaysBounceVertical = true
+        
+        // Add the waterfall layout to your collection view
+        self.collectionView!.collectionViewLayout = layout
     }
     
     func loadMore(amount: Int) {
@@ -100,23 +116,11 @@ class GifCollectionViewController: UICollectionViewController {
 
 }
 
-extension GifCollectionViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding = sectionInsets.left * (itemsPerRow + 1)
-        let itemWidth = (self.view.frame.width - padding) / itemsPerRow
+extension GifCollectionViewController : CHTCollectionViewDelegateWaterfallLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        let padding = sectionInsets.left * (CGFloat(numColumns) + 1)
+        let itemWidth = (self.view.frame.width - padding) / CGFloat(numColumns)
         let itemHeight = self.viewModel.getHeight(width: itemWidth, index: indexPath.row)
         return CGSize(width: itemWidth, height: itemHeight)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
     }
 }
