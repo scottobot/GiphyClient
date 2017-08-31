@@ -9,13 +9,11 @@
 import Foundation
 import UIKit
 import Alamofire
-import AlamofireImage
 
 class GifCollectionViewModel {
-    let gifService: GifService
-    
-    var isLoading = false
-    var gifs: [Gif] = []
+    private let gifService: GifService
+    private var isLoading = false
+    private var gifs: [Gif] = []
     
     var dataSize: Int {
         return self.gifs.count

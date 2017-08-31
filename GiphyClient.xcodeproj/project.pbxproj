@@ -10,7 +10,6 @@
 		110C2B8390E26E15EC8C54ED /* Pods_GiphyClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609C5283D8D8AE812DBD3E73 /* Pods_GiphyClient.framework */; };
 		D203E9DD1F56734300460042 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9DC1F56734300460042 /* AppDelegate.swift */; };
 		D203E9E21F56734300460042 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D203E9E01F56734300460042 /* Main.storyboard */; };
-		D203E9E51F56734300460042 /* GiphyClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D203E9E31F56734300460042 /* GiphyClient.xcdatamodeld */; };
 		D203E9E71F56734300460042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D203E9E61F56734300460042 /* Assets.xcassets */; };
 		D203E9EA1F56734300460042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D203E9E81F56734300460042 /* LaunchScreen.storyboard */; };
 		D203E9F61F56786100460042 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F51F56786100460042 /* Gif.swift */; };
@@ -33,7 +32,6 @@
 		D203E9D91F56734300460042 /* GiphyClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D203E9DC1F56734300460042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D203E9E11F56734300460042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D203E9E41F56734300460042 /* GiphyClient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GiphyClient.xcdatamodel; sourceTree = "<group>"; };
 		D203E9E61F56734300460042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D203E9E91F56734300460042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D203E9EB1F56734300460042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 				D203E9E61F56734300460042 /* Assets.xcassets */,
 				D203E9E81F56734300460042 /* LaunchScreen.storyboard */,
 				D203E9EB1F56734300460042 /* Info.plist */,
-				D203E9E31F56734300460042 /* GiphyClient.xcdatamodeld */,
 			);
 			path = GiphyClient;
 			sourceTree = "<group>";
@@ -213,7 +210,7 @@
 					D203E9D81F56734300460042 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = AQ3XSR79XW;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -309,7 +306,6 @@
 				D203E9F61F56786100460042 /* Gif.swift in Sources */,
 				D25EF99C1F57D47E00B70C37 /* CGFloatTransform.swift in Sources */,
 				D25EF99E1F57D7C600B70C37 /* GifCollectionViewCell.swift in Sources */,
-				D203E9E51F56734300460042 /* GiphyClient.xcdatamodeld in Sources */,
 				D25EF9911F57C25600B70C37 /* AppColors.swift in Sources */,
 				D203E9F81F56799F00460042 /* GifService.swift in Sources */,
 				D25EF9981F57C76200B70C37 /* UIColor.swift in Sources */,
@@ -439,14 +435,14 @@
 			baseConfigurationReference = 6E1EA6173720D7847E8E1372 /* Pods-GiphyClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = AQ3XSR79XW;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GiphyClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scottobot.GiphyClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "97d9c7cd-f6b0-4e4e-bde9-aede0089d03e";
-				PROVISIONING_PROFILE_SPECIFIER = GiphyClient;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -456,14 +452,14 @@
 			baseConfigurationReference = 82567CC1313A68B45BAA0D48 /* Pods-GiphyClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = AQ3XSR79XW;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GiphyClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scottobot.GiphyClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "97d9c7cd-f6b0-4e4e-bde9-aede0089d03e";
-				PROVISIONING_PROFILE_SPECIFIER = GiphyClient;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -490,19 +486,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		D203E9E31F56734300460042 /* GiphyClient.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D203E9E41F56734300460042 /* GiphyClient.xcdatamodel */,
-			);
-			currentVersion = D203E9E41F56734300460042 /* GiphyClient.xcdatamodel */;
-			path = GiphyClient.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = D203E9D11F56734200460042 /* Project object */;
 }

@@ -15,29 +15,25 @@ protocol GifService {
 }
 
 class GiphyService: GifService {
-    let serviceUrl = "https://api.giphy.com/v1/gifs/random?api_key=9d7dbfe707004b9798b7815c5642d002"
+    static let serviceUrl = "https://api.giphy.com/v1/gifs/random?api_key=9d7dbfe707004b9798b7815c5642d002"
     
     func getRandomGif(completion: @escaping (Gif?) -> Void) {
-        Alamofire.request(serviceUrl).responseJSON { response in
-            //print("Request: \(String(describing: response.request))")   // original url request
-            //print("Response: \(String(describing: response.response))") // http url response
-            //print("Result: \(response.result)")                         // response serialization result
-            
-            var gif: GiphyGif? = nil
-            
+        Alamofire.request(GiphyService.serviceUrl).responseJSON { response in
             if let json = response.result.value {
                 //print("JSON: \(json)") // serialized json response
-                gif = Mapper<GiphyGif>().map(JSONObject: json)
+                let gif = Mapper<GiphyGif>().map(JSONObject: json)
+                completion(gif)
             }
-            
-            completion(gif)
+            else {
+                completion(nil)
+            }
         }
     }
 }
 
 class TestGifService: GifService {
     func getRandomGif(completion: @escaping (Gif?) -> Void) {
-        var gif = TestGif()
+        let gif = TestGif()
         gif.frames = 1
         gif.width = CGFloat(Int.random(200..<400))
         gif.height = CGFloat(Int.random(200..<400))
