@@ -8,11 +8,11 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "GifViewCell"
 
 class GifCollectionViewController: UICollectionViewController {
 
-    let initialLoadAmount = 12
+    let initialLoadAmount = 1
     let additionalLoadAmount = 4
     let itemsPerRow = CGFloat(2)
     let sectionInsets = UIEdgeInsets(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
@@ -23,11 +23,8 @@ class GifCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
         self.loadMore(amount: self.initialLoadAmount)
@@ -39,21 +36,11 @@ class GifCollectionViewController: UICollectionViewController {
     }
     
     func loadMore(amount: Int) {
-        self.viewModel.loadGifs(amount: amount) {
+        self.viewModel.loadData(amount: amount) {
             print("=== ALL LOADED!")
             self.collectionView!.reloadData()
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -68,9 +55,14 @@ class GifCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GifCollectionViewCell
     
         cell.backgroundColor = self.appColors.getRandomColor()
+        viewModel.loadGif(index: indexPath.row) { (data) in
+            if let data = data {
+                cell.displayGif(data: data)
+            }
+        }
     
         return cell
     }

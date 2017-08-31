@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import AlamofireImage
 
 enum LoadState {
     case idle
@@ -24,7 +26,7 @@ class GifCollectionViewModel {
         self.gifService = gifService
     }
     
-    func loadGifs(amount: Int, completion: @escaping () -> Void) {
+    func loadData(amount: Int, completion: @escaping () -> Void) {
         guard self.loadState == .idle else { return }
         self.loadState = .loading
         
@@ -41,6 +43,23 @@ class GifCollectionViewModel {
                     completion()
                 }
             }
+        }
+    }
+    
+    func loadGif(index: Int, completion: @escaping (Data?) -> Void) {
+        let gif = self.gifs[index]
+        guard let gifUrl = gif.url else {
+            completion(nil)
+            return
+        }
+        Alamofire.request(gifUrl).responseData { response in
+            debugPrint(response)
+            
+            print(response.request)
+            print(response.response)
+            debugPrint(response.result)
+           
+            completion(response.data)
         }
     }
     
