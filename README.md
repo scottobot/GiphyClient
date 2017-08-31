@@ -16,4 +16,4 @@ GiphyClient is a sweet little app for viewing random gifs.
 
 2. Double-click the 'GiphyClient.xcworkspace' file to open in Xcode.
 
-3. Click 'Run' to view the app in the simulator.
+3. Click 'Run' to Build and Run the app in the simulator.

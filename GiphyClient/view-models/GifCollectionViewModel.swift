@@ -14,6 +14,8 @@ class GifCollectionViewModel {
     private let gifService: GifService
     private var isLoading = false
     private var gifs: [Gif] = []
+    private var pendingUrls: [String] = []
+    private var cache: [String: Data] = [:]
     
     var dataSize: Int {
         return self.gifs.count
@@ -54,23 +56,24 @@ class GifCollectionViewModel {
     }
     
     func loadGif(index: Int, completion: @escaping (Data?, String?) -> Void) {
-        var gif = self.gifs[index]
-        guard let gifUrl = gif.url, !gif.isLoading else {
+        let gif = self.gifs[index]
+        guard let gifUrl = gif.url, !self.pendingUrls.contains(gifUrl) else {
             completion(nil, nil)
             return
         }
-        if let gifData = gif.cachedData {
+        if let gifData = self.cache[gifUrl] {
             //print("<<< found cache for index \(index)")
             completion(gifData, gifUrl)
             return
         }
         //print(">>> loading \(gifUrl) for index \(index)")
-        gif.isLoading = true
-        let gifIndex = index
+        self.pendingUrls.append(gifUrl)
         Alamofire.request(gifUrl).responseData { response in
             //print("<<< loading success for index \(index)")
-            self.gifs[gifIndex].isLoading = false
-            self.gifs[gifIndex].cachedData = response.data
+            if let pendingIndex = self.pendingUrls.index(of: gifUrl) {
+                self.pendingUrls.remove(at: pendingIndex)
+            }
+            self.cache[gifUrl] = response.data
             completion(response.data, gifUrl)
         }
     }
