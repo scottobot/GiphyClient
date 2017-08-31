@@ -62,7 +62,6 @@ class GifCollectionViewController: UICollectionViewController {
     }
     
     func loadMore(amount: Int) {
-        return
         let startIndex = self.viewModel.dataSize
         self.viewModel.loadData(amount: amount) {
             if startIndex == 0 {
@@ -91,29 +90,25 @@ class GifCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // plus on to trigger data fetch
-        return self.viewModel.dataSize + 1
+        return self.viewModel.dataSize
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.item < self.viewModel.dataSize {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gifViewCellIdentifier, for: indexPath) as! GifCollectionViewCell
-            cell.imageView.image = nil
-            cell.backgroundColor = self.appColors.getRandomColor()
-            viewModel.loadGif(index: indexPath.item) { (data) in
-                if let data = data {
-                    cell.displayGif(data: data)
-                }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gifViewCellIdentifier, for: indexPath) as! GifCollectionViewCell
+        cell.imageView.image = nil
+        cell.backgroundColor = self.appColors.getRandomColor()
+        viewModel.loadGif(index: indexPath.item) { (data) in
+            if let data = data {
+                cell.backgroundColor = UIColor.black
+                cell.displayGif(data: data)
             }
-            return cell
         }
-        else {
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == self.viewModel.dataSize - 1 {
             self.loadMore(amount: self.pageSize)
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: loadingCellIdentifier, for: indexPath)
-            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-            activityIndicator.center = cell.center
-            cell.addSubview(activityIndicator)
-            activityIndicator.startAnimating()
-            return cell
         }
     }
 
@@ -152,14 +147,9 @@ class GifCollectionViewController: UICollectionViewController {
 
 extension GifCollectionViewController : CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-        if indexPath.item == self.viewModel.dataSize {
-            return CGSize(width: self.view.frame.width, height: 50.0)
-        }
-        else {
-            let padding = sectionInsets.left * (CGFloat(numColumns) + 1)
-            let itemWidth = (self.view.frame.width - padding) / CGFloat(numColumns)
-            let itemHeight = self.viewModel.getHeight(width: itemWidth, index: indexPath.item)
-            return CGSize(width: itemWidth, height: itemHeight)
-        }
+        let padding = sectionInsets.left * (CGFloat(numColumns) + 1)
+        let itemWidth = (self.view.frame.width - padding) / CGFloat(numColumns)
+        let itemHeight = self.viewModel.getHeight(width: itemWidth, index: indexPath.item)
+        return CGSize(width: itemWidth, height: itemHeight)
     }
 }
