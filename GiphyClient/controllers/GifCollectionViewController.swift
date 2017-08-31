@@ -103,7 +103,6 @@ class GifCollectionViewController: UICollectionViewController {
         viewModel.loadGif(index: indexPath.item) { (data, url) in
             if let data = data, url == cell.url {
                 DispatchQueue.main.async {
-                    cell.backgroundColor = UIColor.black
                     cell.displayGif(data: data)
                 }
             }

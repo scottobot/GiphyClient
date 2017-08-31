@@ -8,15 +8,15 @@
 
 import Foundation
 import UIKit
-import SwiftyGif
+import FLAnimatedImage
 
 class GifCollectionViewCell: UICollectionViewCell {
-    var imageView: UIImageView!
+    var imageView: FLAnimatedImageView!
     var url: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.imageView = UIImageView()
+        self.imageView = FLAnimatedImageView()
         self.contentView.addSubview(self.imageView)
     }
     
@@ -31,19 +31,16 @@ class GifCollectionViewCell: UICollectionViewCell {
     
     func displayGif(data: Data) {
         DispatchQueue.global(qos: .userInteractive).async {
-            let gifImage = UIImage(gifData: data)
-            let gifManager = SwiftyGifManager(memoryLimit: 20)
+            let gifImage = FLAnimatedImage(animatedGIFData: data)
             DispatchQueue.main.async {
-                self.imageView.setGifImage(gifImage, manager: gifManager)
+                self.imageView.animatedImage = gifImage
+                self.backgroundColor = UIColor.black
             }
         }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.imageView.removeFromSuperview()
-        self.imageView = UIImageView()
-        self.contentView.addSubview(self.imageView)
-        self.imageView.frame = self.contentView.frame
+        self.imageView.animatedImage = nil
     }
 }
