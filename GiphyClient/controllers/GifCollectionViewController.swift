@@ -12,6 +12,11 @@ private let reuseIdentifier = "Cell"
 
 class GifCollectionViewController: UICollectionViewController {
 
+    let initialLoadAmount = 12
+    let additionalLoadAmount = 4
+    let itemsPerRow: CGFloat = 2
+    let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+    
     var viewModel: GifCollectionViewModel!
     
     override func viewDidLoad() {
@@ -24,17 +29,21 @@ class GifCollectionViewController: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
-        
-        self.viewModel.loadGifs(amount: 12) {
-            self.collectionView!.reloadData()
-        }
+        self.loadMore(amount: self.initialLoadAmount)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func loadMore(amount: Int) {
+        self.viewModel.loadGifs(amount: amount) {
+            print("=== ALL LOADED!")
+            self.collectionView!.reloadData()
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -54,14 +63,13 @@ class GifCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return self.viewModel.gifs.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
-        // Configure the cell        
+        cell.backgroundColor = UIColor.black
     
         return cell
     }
@@ -97,4 +105,25 @@ class GifCollectionViewController: UICollectionViewController {
     }
     */
 
+}
+
+extension GifCollectionViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }

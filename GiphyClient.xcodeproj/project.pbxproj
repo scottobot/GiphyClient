@@ -14,9 +14,10 @@
 		D203E9E71F56734300460042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D203E9E61F56734300460042 /* Assets.xcassets */; };
 		D203E9EA1F56734300460042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D203E9E81F56734300460042 /* LaunchScreen.storyboard */; };
 		D203E9F61F56786100460042 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F51F56786100460042 /* Gif.swift */; };
-		D203E9F81F56799F00460042 /* GiphyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F71F56799F00460042 /* GiphyService.swift */; };
+		D203E9F81F56799F00460042 /* GifService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F71F56799F00460042 /* GifService.swift */; };
 		D203E9FA1F567C5C00460042 /* GifCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */; };
 		D25EF9891F572C3000B70C37 /* GifCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */; };
+		D25EF98E1F57B8BB00B70C37 /* AppInitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF98D1F57B8BB00B70C37 /* AppInitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +32,10 @@
 		D203E9E91F56734300460042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D203E9EB1F56734300460042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D203E9F51F56786100460042 /* Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gif.swift; path = models/Gif.swift; sourceTree = "<group>"; };
-		D203E9F71F56799F00460042 /* GiphyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GiphyService.swift; path = services/GiphyService.swift; sourceTree = "<group>"; };
+		D203E9F71F56799F00460042 /* GifService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifService.swift; path = services/GifService.swift; sourceTree = "<group>"; };
 		D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewController.swift; path = controllers/GifCollectionViewController.swift; sourceTree = "<group>"; };
 		D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewModel.swift; path = "view-models/GifCollectionViewModel.swift"; sourceTree = "<group>"; };
+		D25EF98D1F57B8BB00B70C37 /* AppInitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppInitViewController.swift; path = controllers/AppInitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,10 +88,11 @@
 		D203E9DB1F56734300460042 /* GiphyClient */ = {
 			isa = PBXGroup;
 			children = (
-				D203E9F41F5677EC00460042 /* services */,
+				D203E9F11F5677D500460042 /* models */,
+				D25EF98C1F57B82900B70C37 /* view-models */,
 				D203E9F31F5677E300460042 /* controllers */,
 				D203E9F21F5677DC00460042 /* views */,
-				D203E9F11F5677D500460042 /* models */,
+				D203E9F41F5677EC00460042 /* services */,
 				D203E9DC1F56734300460042 /* AppDelegate.swift */,
 				D203E9E01F56734300460042 /* Main.storyboard */,
 				D203E9E61F56734300460042 /* Assets.xcassets */,
@@ -111,7 +114,6 @@
 		D203E9F21F5677DC00460042 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -119,6 +121,7 @@
 		D203E9F31F5677E300460042 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D25EF98D1F57B8BB00B70C37 /* AppInitViewController.swift */,
 				D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */,
 			);
 			name = controllers;
@@ -127,9 +130,17 @@
 		D203E9F41F5677EC00460042 /* services */ = {
 			isa = PBXGroup;
 			children = (
-				D203E9F71F56799F00460042 /* GiphyService.swift */,
+				D203E9F71F56799F00460042 /* GifService.swift */,
 			);
 			name = services;
+			sourceTree = "<group>";
+		};
+		D25EF98C1F57B82900B70C37 /* view-models */ = {
+			isa = PBXGroup;
+			children = (
+				D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */,
+			);
+			name = "view-models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,7 +272,8 @@
 				D203E9DD1F56734300460042 /* AppDelegate.swift in Sources */,
 				D203E9F61F56786100460042 /* Gif.swift in Sources */,
 				D203E9E51F56734300460042 /* GiphyClient.xcdatamodeld in Sources */,
-				D203E9F81F56799F00460042 /* GiphyService.swift in Sources */,
+				D25EF98E1F57B8BB00B70C37 /* AppInitViewController.swift in Sources */,
+				D203E9F81F56799F00460042 /* GifService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

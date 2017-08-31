@@ -7,7 +7,18 @@
 //
 
 import Foundation
+import ObjectMapper
 
-struct Gif {
-    let url: String
+protocol Gif {
+    var url: String? { get }
+}
+
+struct GiphyGif: Gif, Mappable {
+    var url: String?
+    
+    init?(map: Map) {}
+    
+    mutating func mapping(map: Map) {
+        url         <- map["data.image_url"]
+    }
 }
