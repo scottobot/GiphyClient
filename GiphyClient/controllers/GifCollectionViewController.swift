@@ -65,20 +65,22 @@ class GifCollectionViewController: UICollectionViewController {
         let startIndex = self.viewModel.dataSize
         self.viewModel.loadData(amount: amount) { success in
             guard success else { return }
-            if startIndex == 0 {
-                self.collectionView!.reloadData()
-            }
-            else {
-                self.collectionView!.performBatchUpdates({ () -> Void in
-                    var indexPaths: [IndexPath] = []
-                    let endIndex = startIndex + amount
-                    for i in startIndex..<endIndex {
-                        let indexPath = IndexPath(item: i, section: 0)
-                        indexPaths.append(indexPath)
-                    }
-                    self.collectionView!.insertItems(at: indexPaths)
-                    
-                }, completion: nil)
+            DispatchQueue.main.async {
+                if startIndex == 0 {
+                    self.collectionView!.reloadData()
+                }
+                else {
+                    self.collectionView!.performBatchUpdates({ () -> Void in
+                        var indexPaths: [IndexPath] = []
+                        let endIndex = startIndex + amount
+                        for i in startIndex..<endIndex {
+                            let indexPath = IndexPath(item: i, section: 0)
+                            indexPaths.append(indexPath)
+                        }
+                        self.collectionView!.insertItems(at: indexPaths)
+                        
+                    }, completion: nil)
+                }
             }
         }
     }
@@ -100,8 +102,10 @@ class GifCollectionViewController: UICollectionViewController {
         cell.backgroundColor = self.appColors.getRandomColor()
         viewModel.loadGif(index: indexPath.item) { (data, url) in
             if let data = data, url == cell.url {
-                cell.backgroundColor = UIColor.black
-                cell.displayGif(data: data)
+                DispatchQueue.main.async {
+                    cell.backgroundColor = UIColor.black
+                    cell.displayGif(data: data)
+                }
             }
         }
         return cell
