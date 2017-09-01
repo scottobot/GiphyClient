@@ -94,6 +94,7 @@ class GifCollectionViewModel {
     }
     
     func url(index: Int) -> String? {
+        guard self.dataSize > index else { return nil }
         return self.gifs[index].url
     }
     

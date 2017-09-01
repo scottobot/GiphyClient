@@ -34,7 +34,7 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
     
     private func setupNavBar() {
         if let image = UIImage(named: "GiphyLogoWithTitle"), let navBar = self.navigationController?.navigationBar {
-            let imageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: navBar.frame.size.width, height: navBar.frame.size.height * 0.8))
+            let imageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: navBar.frame.size.width, height: navBar.frame.size.height * 0.7))
             imageView.contentMode = .scaleAspectFit
             imageView.image = image
             self.navigationItem.titleView = imageView
@@ -106,11 +106,13 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gifViewCellIdentifier, for: indexPath) as! GifCollectionViewCell
-        cell.url = self.viewModel.url(index: indexPath.item)
-        cell.backgroundColor = self.appColors.getRandomColor()
-        viewModel.loadGif(index: indexPath.item) { (data, url) in
-            if let data = data, url == cell.url {
-                cell.displayGif(data: data)
+        if let url = self.viewModel.url(index: indexPath.item) {
+            cell.url = url
+            cell.backgroundColor = self.appColors.getRandomColor()
+            viewModel.loadGif(index: indexPath.item) { (data, url) in
+                if let data = data, url == cell.url {
+                    cell.displayGif(data: data)
+                }
             }
         }
         return cell
