@@ -1,3 +1,5 @@
+### Description
+
 GiphyClient is a sweet little app for viewing random gifs.
 
 ### Features
