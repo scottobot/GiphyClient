@@ -109,7 +109,7 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
         if let url = self.viewModel.url(index: indexPath.item) {
             cell.url = url
             cell.backgroundColor = self.appColors.getRandomColor()
-            viewModel.loadGif(index: indexPath.item) { (data, url) in
+            self.viewModel.loadGif(index: indexPath.item) { (data, url) in
                 if let data = data, url == cell.url {
                     cell.displayGif(data: data)
                 }

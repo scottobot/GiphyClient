@@ -82,7 +82,9 @@ class GifCollectionViewModel {
                 self.pendingUrls.remove(at: pendingIndex)
             }
             self.cache[gifUrl] = response.data
-            completion(response.data, gifUrl)
+            DispatchQueue.main.async {
+                completion(response.data, gifUrl)
+            }
         }
     }
     
@@ -112,6 +114,7 @@ class GifCollectionViewModel {
     private func performReset() {
         self.resetFlag = false
         self.gifs.removeAll()
+        self.cache.removeAll()
         self.onReset?()
     }
 }
