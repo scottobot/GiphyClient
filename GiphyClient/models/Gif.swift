@@ -25,7 +25,7 @@ class GiphyGif: Gif, Mappable {
     required init?(map: Map) {}
     
     func mapping(map: Map) {
-        url         <- map["data.image_url"]
+        url         <- map["data.fixed_width_downsampled_url"]
         frames      <- (map["data.image_frames"], IntTransform())
         width       <- (map["data.image_width"], CGFloatTransform())
         height      <- (map["data.image_height"], CGFloatTransform())
