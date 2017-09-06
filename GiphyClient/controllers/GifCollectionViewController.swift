@@ -74,12 +74,15 @@ class GifCollectionViewController: UICollectionViewController {
     }
     
     private func loadMore(amount: Int) {
-        self.viewModel.loadData(amount: amount) { success in
-            guard success else { return }
+        self.viewModel.loadData(amount: amount) { delta in
+            guard delta > 0 else {
+                self.showConnectionError()
+                return
+            }
             self.collectionView!.performBatchUpdates({ () -> Void in
                 var indexPaths: [IndexPath] = []
                 let startIndex = self.collectionView!.numberOfItems(inSection: 0)
-                let endIndex = startIndex + amount
+                let endIndex = startIndex + delta
                 for i in startIndex..<endIndex {
                     let indexPath = IndexPath(item: i, section: 0)
                     indexPaths.append(indexPath)
@@ -115,6 +118,12 @@ class GifCollectionViewController: UICollectionViewController {
             self.loadMore(amount: self.pageSize)
         }
         return cell
+    }
+    
+    func showConnectionError() {
+        let alert = UIAlertController(title: AppText.connectionErrorTitle, message: AppText.connectionErrorBody, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: AppText.ok, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

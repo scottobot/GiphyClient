@@ -23,14 +23,12 @@ class GifCollectionViewModel {
         return self.loadDataQueue.operationCount > 0
     }
     
-    func loadData(amount: Int, completion: @escaping (Bool) -> Void) {
-        guard !self.isLoadDataPending else {
-            completion(false)
-            return
-        }
+    func loadData(amount: Int, completion: @escaping (Int) -> Void) {
+        guard !self.isLoadDataPending else { return }
         
         print("=== Loading \(amount) gifs...")
         
+        var delta = 0
         DispatchQueue.global(qos: .userInitiated).async {
             var operations: [LoadDataOperation] = []
             for _ in 1...amount {
@@ -38,14 +36,15 @@ class GifCollectionViewModel {
             }
             self.loadDataQueue.addOperations(operations, waitUntilFinished: true)
             for operation in operations {
-                if let randomGif = operation.gif {
-                    print("   ", randomGif.url ?? "Gif data failed to load")
+                if let randomGif = operation.gif, let gifUrl = randomGif.url {
+                    print("   ", gifUrl)
                     self.gifs.append(randomGif)
+                    delta += 1
                 }
             }
             print("    Loading complete!")
             DispatchQueue.main.async {
-                completion(true)
+                completion(delta)
             }
         }
     }

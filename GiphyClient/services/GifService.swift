@@ -15,10 +15,11 @@ protocol GifService {
 }
 
 class GiphyService: GifService {
-    static let serviceUrl = "https://api.giphy.com/v1/gifs/random?api_key=9d7dbfe707004b9798b7815c5642d002"
+    static let serviceUrl = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC"
     
     func getRandomGif(completion: @escaping (Gif?) -> Void) {
         Alamofire.request(GiphyService.serviceUrl).responseJSON { response in
+            //debugPrint(response)
             if let json = response.result.value {
                 //print("JSON: \(json)") // serialized json response
                 let gif = Mapper<GiphyGif>().map(JSONObject: json)
