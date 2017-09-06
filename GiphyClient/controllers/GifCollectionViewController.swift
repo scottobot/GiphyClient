@@ -11,14 +11,14 @@ import CHTCollectionViewWaterfallLayout
 
 private let gifViewCellIdentifier = "GifViewCell"
 
-class GifCollectionViewController: UICollectionViewController, CHTCollectionViewDelegateWaterfallLayout {
-    private let initialPageSize = 12
-    private let pageSize = 4
-    private let numColumns = 2
-    private let cellPadding = CGFloat(4)
-    private var appColors = AppColors()
+class GifCollectionViewController: UICollectionViewController {
+    fileprivate let initialPageSize = 12
+    fileprivate let pageSize = 4
+    fileprivate let numColumns = 2
+    fileprivate let cellPadding = CGFloat(4)
+    fileprivate var appColors = AppColors()
     
-    var viewModel: GifCollectionViewModel!
+    var viewModel: GifCollectionViewModel = GifCollectionViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,14 +43,11 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
     
     private func setupLayout() {
         let layout = self.collectionView!.collectionViewLayout as! CHTCollectionViewWaterfallLayout
-        
-        // Change individual layout attributes for the spacing between cells
         layout.columnCount = numColumns
         layout.sectionInset = UIEdgeInsets(top: cellPadding, left: cellPadding, bottom: self.view.frame.size.height * 0.5, right: cellPadding)
         layout.minimumColumnSpacing = cellPadding
         layout.minimumInteritemSpacing = cellPadding
         
-        // Collection view attributes
         self.collectionView!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.collectionView!.alwaysBounceVertical = true
     }
@@ -65,15 +62,14 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
     
     @objc private func refreshGifs(sender: UIRefreshControl) {
         sender.endRefreshing()
-        self.viewModel.reset() {
-            // fade out to make the refresh feel less abrupt
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.alpha = 0.0
-            }) { (finished) in
-                self.view.alpha = 1.0
-                self.collectionView!.reloadData()
-                self.loadMore(amount: self.initialPageSize)
-            }
+        self.viewModel.reset()
+        // fade out to make the refresh feel less abrupt
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.alpha = 0.0
+        }) { (finished) in
+            self.view.alpha = 1.0
+            self.collectionView!.reloadData()
+            self.loadMore(amount: self.initialPageSize)
         }
     }
     
@@ -106,26 +102,23 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gifViewCellIdentifier, for: indexPath) as! GifCollectionViewCell
+        cell.backgroundColor = self.appColors.getRandomColor()
         if let url = self.viewModel.url(index: indexPath.item) {
             cell.url = url
-            cell.backgroundColor = self.appColors.getRandomColor()
             self.viewModel.loadGif(index: indexPath.item) { (data, url) in
                 if let data = data, url == cell.url {
                     cell.displayGif(data: data)
                 }
             }
         }
-        return cell
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == self.viewModel.dataSize - 1 {
             self.loadMore(amount: self.pageSize)
         }
+        return cell
     }
-    
-    // MARK: CHTCollectionViewDelegateWaterfallLayout
-    
+}
+
+extension GifCollectionViewController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         let padding = cellPadding * (CGFloat(numColumns) + 1)
         let itemWidth = (self.view.frame.width - padding) / CGFloat(numColumns)
