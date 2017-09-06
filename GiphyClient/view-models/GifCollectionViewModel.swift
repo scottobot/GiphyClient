@@ -28,13 +28,13 @@ class GifCollectionViewModel {
         
         print("=== Loading \(amount) gifs...")
         
-        var delta = 0
         DispatchQueue.global(qos: .userInitiated).async {
             var operations: [LoadDataOperation] = []
             for _ in 1...amount {
                 operations.append(LoadDataOperation())
             }
             self.loadDataQueue.addOperations(operations, waitUntilFinished: true)
+            var delta = 0
             for operation in operations {
                 if let randomGif = operation.gif, let gifUrl = randomGif.url {
                     print("   ", gifUrl)
