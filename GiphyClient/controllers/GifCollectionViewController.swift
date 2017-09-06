@@ -18,7 +18,7 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
     private let cellPadding = CGFloat(4)
     private var appColors = AppColors()
     
-    var viewModel: GifCollectionViewModel!
+    var viewModel: GifCollectionViewModel = GifCollectionViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,7 +11,6 @@ import UIKit
 import Alamofire
 
 class GifCollectionViewModel {
-    private let gifService: GifService
     private var isLoadDataPending = false
     private var gifs: [Gif] = []
     private var pendingUrls: [String] = []
@@ -21,10 +20,6 @@ class GifCollectionViewModel {
     
     var dataSize: Int {
         return self.gifs.count
-    }
-    
-    init(gifService: GifService) {
-        self.gifService = gifService
     }
     
     func loadData(amount: Int, completion: @escaping (Bool) -> Void) {
@@ -40,7 +35,7 @@ class GifCollectionViewModel {
             let loadGroup = DispatchGroup()
             for _ in 1...amount {
                 loadGroup.enter()
-                self.gifService.getRandomGif() { (gif) in
+                Services.gifService.getRandomGif() { (gif) in
                     if let randomGif = gif {
                         print("   ", randomGif.url ?? "Gif data failed to load")
                         self.gifs.append(randomGif)
