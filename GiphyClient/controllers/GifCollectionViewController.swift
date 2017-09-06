@@ -122,7 +122,7 @@ extension GifCollectionViewController: CHTCollectionViewDelegateWaterfallLayout 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         let padding = cellPadding * (CGFloat(numColumns) + 1)
         let itemWidth = (self.view.frame.width - padding) / CGFloat(numColumns)
-        let itemHeight = self.viewModel.getHeight(width: itemWidth, index: indexPath.item)
+        let itemHeight = self.viewModel.getHeight(for: itemWidth, index: indexPath.item)
         return CGSize(width: itemWidth, height: itemHeight)
     }
 }

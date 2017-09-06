@@ -75,7 +75,7 @@ class GifCollectionViewModel {
         }
     }
     
-    func getHeight(width: CGFloat, index: Int) -> CGFloat {
+    func getHeight(for width: CGFloat, index: Int) -> CGFloat {
         let gif = self.gifs[index]
         guard let gifWidth = gif.width else { return width }
         guard let gifHeight = gif.height else { return width }
