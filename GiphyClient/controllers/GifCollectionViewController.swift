@@ -65,15 +65,14 @@ class GifCollectionViewController: UICollectionViewController, CHTCollectionView
     
     @objc private func refreshGifs(sender: UIRefreshControl) {
         sender.endRefreshing()
-        self.viewModel.reset() {
-            // fade out to make the refresh feel less abrupt
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.alpha = 0.0
-            }) { (finished) in
-                self.view.alpha = 1.0
-                self.collectionView!.reloadData()
-                self.loadMore(amount: self.initialPageSize)
-            }
+        self.viewModel.reset()
+        // fade out to make the refresh feel less abrupt
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.alpha = 0.0
+        }) { (finished) in
+            self.view.alpha = 1.0
+            self.collectionView!.reloadData()
+            self.loadMore(amount: self.initialPageSize)
         }
     }
     

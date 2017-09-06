@@ -17,6 +17,8 @@
 		D203E9FA1F567C5C00460042 /* GifCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */; };
 		D24745921F5F7069009F0105 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24745911F5F7069009F0105 /* Services.swift */; };
 		D24745941F5F7812009F0105 /* GifCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24745931F5F7812009F0105 /* GifCache.swift */; };
+		D24745971F5F7A30009F0105 /* LoadDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24745961F5F7A30009F0105 /* LoadDataOperation.swift */; };
+		D24745991F5FA5BD009F0105 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24745981F5FA5BC009F0105 /* AsyncOperation.swift */; };
 		D25EF9891F572C3000B70C37 /* GifCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */; };
 		D25EF9911F57C25600B70C37 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9901F57C25600B70C37 /* AppColors.swift */; };
 		D25EF9961F57C50000B70C37 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9951F57C50000B70C37 /* Collection.swift */; };
@@ -42,6 +44,8 @@
 		D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewController.swift; path = controllers/GifCollectionViewController.swift; sourceTree = "<group>"; };
 		D24745911F5F7069009F0105 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Services.swift; path = services/Services.swift; sourceTree = "<group>"; };
 		D24745931F5F7812009F0105 /* GifCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCache.swift; path = utils/GifCache.swift; sourceTree = "<group>"; };
+		D24745961F5F7A30009F0105 /* LoadDataOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadDataOperation.swift; path = operations/LoadDataOperation.swift; sourceTree = "<group>"; };
+		D24745981F5FA5BC009F0105 /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncOperation.swift; path = operations/AsyncOperation.swift; sourceTree = "<group>"; };
 		D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewModel.swift; path = "view-models/GifCollectionViewModel.swift"; sourceTree = "<group>"; };
 		D25EF9901F57C25600B70C37 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppColors.swift; path = utils/AppColors.swift; sourceTree = "<group>"; };
 		D25EF9951F57C50000B70C37 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Collection.swift; path = extensions/Collection.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 				D203E9F31F5677E300460042 /* controllers */,
 				D203E9F21F5677DC00460042 /* views */,
 				D203E9F41F5677EC00460042 /* services */,
+				D24745951F5F7A14009F0105 /* operations */,
 				D25EF9921F57C34500B70C37 /* extensions */,
 				D25EF98F1F57C23D00B70C37 /* utils */,
 				D203E9DC1F56734300460042 /* AppDelegate.swift */,
@@ -149,6 +154,15 @@
 				D203E9F71F56799F00460042 /* GifService.swift */,
 			);
 			name = services;
+			sourceTree = "<group>";
+		};
+		D24745951F5F7A14009F0105 /* operations */ = {
+			isa = PBXGroup;
+			children = (
+				D24745981F5FA5BC009F0105 /* AsyncOperation.swift */,
+				D24745961F5F7A30009F0105 /* LoadDataOperation.swift */,
+			);
+			name = operations;
 			sourceTree = "<group>";
 		};
 		D25EF98C1F57B82900B70C37 /* view-models */ = {
@@ -309,6 +323,7 @@
 				D25EF9A01F58467C00B70C37 /* NSNumber.swift in Sources */,
 				D25EF9891F572C3000B70C37 /* GifCollectionViewModel.swift in Sources */,
 				D203E9FA1F567C5C00460042 /* GifCollectionViewController.swift in Sources */,
+				D24745971F5F7A30009F0105 /* LoadDataOperation.swift in Sources */,
 				D203E9DD1F56734300460042 /* AppDelegate.swift in Sources */,
 				D203E9F61F56786100460042 /* Gif.swift in Sources */,
 				D25EF99C1F57D47E00B70C37 /* CGFloatTransform.swift in Sources */,
@@ -317,6 +332,7 @@
 				D203E9F81F56799F00460042 /* GifService.swift in Sources */,
 				D24745941F5F7812009F0105 /* GifCache.swift in Sources */,
 				D25EF9981F57C76200B70C37 /* UIColor.swift in Sources */,
+				D24745991F5FA5BD009F0105 /* AsyncOperation.swift in Sources */,
 				D25EF99A1F57D2C500B70C37 /* IntTransform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

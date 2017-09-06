@@ -11,14 +11,16 @@ import UIKit
 import Alamofire
 
 class GifCollectionViewModel {
-    private var isLoadDataPending = false
+    private let loadDataQueue = OperationQueue()
     private var gifs: [Gif] = []
     private var pendingUrls: [String] = []
-    private var resetFlag = false
-    private var onReset: (() -> Void)?
     
     var dataSize: Int {
         return self.gifs.count
+    }
+    
+    var isLoadDataPending: Bool {
+        return self.loadDataQueue.operationCount > 0
     }
     
     func loadData(amount: Int, completion: @escaping (Bool) -> Void) {
@@ -26,33 +28,24 @@ class GifCollectionViewModel {
             completion(false)
             return
         }
-        self.isLoadDataPending = true
         
         print("=== Loading \(amount) gifs...")
         
         DispatchQueue.global(qos: .userInitiated).async {
-            let loadGroup = DispatchGroup()
+            var operations: [LoadDataOperation] = []
             for _ in 1...amount {
-                loadGroup.enter()
-                Services.gifService.getRandomGif() { (gif) in
-                    if let randomGif = gif {
-                        print("   ", randomGif.url ?? "Gif data failed to load")
-                        self.gifs.append(randomGif)
-                    }
-                    loadGroup.leave()
+                operations.append(LoadDataOperation())
+            }
+            self.loadDataQueue.addOperations(operations, waitUntilFinished: true)
+            for operation in operations {
+                if let randomGif = operation.gif {
+                    print("   ", randomGif.url ?? "Gif data failed to load")
+                    self.gifs.append(randomGif)
                 }
             }
-            loadGroup.wait()
             print("    Loading complete!")
-            self.isLoadDataPending = false
             DispatchQueue.main.async {
-                if self.resetFlag {
-                    completion(false)
-                    self.performReset()
-                }
-                else {
-                    completion(true)
-                }
+                completion(true)
             }
         }
     }
@@ -94,21 +87,9 @@ class GifCollectionViewModel {
         return self.gifs[index].url
     }
     
-    func reset(completion: @escaping () -> Void) {
-        guard !self.resetFlag else { return }
-        self.onReset = completion
-        if self.isLoadDataPending {
-            self.resetFlag = true
-        }
-        else {
-            self.performReset()
-        }
-    }
-    
-    private func performReset() {
-        self.resetFlag = false
+    func reset() {
+        self.loadDataQueue.cancelAllOperations()
         self.gifs.removeAll()
         GifCache.shared.purge()
-        self.onReset?()
     }
 }
