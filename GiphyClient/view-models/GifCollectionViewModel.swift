@@ -14,7 +14,6 @@ class GifCollectionViewModel {
     private var isLoadDataPending = false
     private var gifs: [Gif] = []
     private var pendingUrls: [String] = []
-    private var cache: [String: Data] = [:]
     private var resetFlag = false
     private var onReset: (() -> Void)?
     
@@ -64,7 +63,7 @@ class GifCollectionViewModel {
             completion(nil, nil)
             return
         }
-        if let gifData = self.cache[gifUrl] {
+        if let gifData = GifCache.shared.retrieve(gifUrl) {
             //print("<<< found cache for index \(index)")
             completion(gifData, gifUrl)
             return
@@ -76,7 +75,7 @@ class GifCollectionViewModel {
             if let pendingIndex = self.pendingUrls.index(of: gifUrl) {
                 self.pendingUrls.remove(at: pendingIndex)
             }
-            self.cache[gifUrl] = response.data
+            GifCache.shared.store(gifUrl, data: response.data)
             DispatchQueue.main.async {
                 completion(response.data, gifUrl)
             }
@@ -109,7 +108,7 @@ class GifCollectionViewModel {
     private func performReset() {
         self.resetFlag = false
         self.gifs.removeAll()
-        self.cache.removeAll()
+        GifCache.shared.purge()
         self.onReset?()
     }
 }

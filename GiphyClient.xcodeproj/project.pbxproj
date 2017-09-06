@@ -16,6 +16,7 @@
 		D203E9F81F56799F00460042 /* GifService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F71F56799F00460042 /* GifService.swift */; };
 		D203E9FA1F567C5C00460042 /* GifCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */; };
 		D24745921F5F7069009F0105 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24745911F5F7069009F0105 /* Services.swift */; };
+		D24745941F5F7812009F0105 /* GifCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24745931F5F7812009F0105 /* GifCache.swift */; };
 		D25EF9891F572C3000B70C37 /* GifCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */; };
 		D25EF9911F57C25600B70C37 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9901F57C25600B70C37 /* AppColors.swift */; };
 		D25EF9961F57C50000B70C37 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25EF9951F57C50000B70C37 /* Collection.swift */; };
@@ -40,6 +41,7 @@
 		D203E9F71F56799F00460042 /* GifService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifService.swift; path = services/GifService.swift; sourceTree = "<group>"; };
 		D203E9F91F567C5C00460042 /* GifCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewController.swift; path = controllers/GifCollectionViewController.swift; sourceTree = "<group>"; };
 		D24745911F5F7069009F0105 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Services.swift; path = services/Services.swift; sourceTree = "<group>"; };
+		D24745931F5F7812009F0105 /* GifCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCache.swift; path = utils/GifCache.swift; sourceTree = "<group>"; };
 		D25EF9881F572C3000B70C37 /* GifCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GifCollectionViewModel.swift; path = "view-models/GifCollectionViewModel.swift"; sourceTree = "<group>"; };
 		D25EF9901F57C25600B70C37 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppColors.swift; path = utils/AppColors.swift; sourceTree = "<group>"; };
 		D25EF9951F57C50000B70C37 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Collection.swift; path = extensions/Collection.swift; sourceTree = "<group>"; };
@@ -143,8 +145,8 @@
 		D203E9F41F5677EC00460042 /* services */ = {
 			isa = PBXGroup;
 			children = (
-				D203E9F71F56799F00460042 /* GifService.swift */,
 				D24745911F5F7069009F0105 /* Services.swift */,
+				D203E9F71F56799F00460042 /* GifService.swift */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -163,6 +165,7 @@
 				D25EF9901F57C25600B70C37 /* AppColors.swift */,
 				D25EF9991F57D2C500B70C37 /* IntTransform.swift */,
 				D25EF99B1F57D47E00B70C37 /* CGFloatTransform.swift */,
+				D24745931F5F7812009F0105 /* GifCache.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				D25EF99E1F57D7C600B70C37 /* GifCollectionViewCell.swift in Sources */,
 				D25EF9911F57C25600B70C37 /* AppColors.swift in Sources */,
 				D203E9F81F56799F00460042 /* GifService.swift in Sources */,
+				D24745941F5F7812009F0105 /* GifCache.swift in Sources */,
 				D25EF9981F57C76200B70C37 /* UIColor.swift in Sources */,
 				D25EF99A1F57D2C500B70C37 /* IntTransform.swift in Sources */,
 			);
