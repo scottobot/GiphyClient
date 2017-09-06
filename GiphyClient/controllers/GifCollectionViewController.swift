@@ -111,13 +111,10 @@ class GifCollectionViewController: UICollectionViewController {
                 }
             }
         }
-        return cell
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == self.viewModel.dataSize - 1 {
             self.loadMore(amount: self.pageSize)
         }
+        return cell
     }
 }
 
