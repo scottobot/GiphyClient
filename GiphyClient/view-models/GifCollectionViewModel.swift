@@ -49,15 +49,15 @@ class GifCollectionViewModel {
         }
     }
     
-    func loadGif(index: Int, completion: @escaping (Data?, String?) -> Void) {
+    func loadGif(index: Int, completion: @escaping (Data?) -> Void) {
         let gif = self.gifs[index]
         guard let gifUrl = gif.url, !self.pendingUrls.contains(gifUrl) else {
-            completion(nil, nil)
+            completion(nil)
             return
         }
         if let gifData = GifCache.shared.retrieve(gifUrl) {
             //print("<<< found cache for index \(index)")
-            completion(gifData, gifUrl)
+            completion(gifData)
             return
         }
         //print(">>> loading \(gifUrl) for index \(index)")
@@ -69,7 +69,7 @@ class GifCollectionViewModel {
             }
             GifCache.shared.store(gifUrl, data: response.data)
             DispatchQueue.main.async {
-                completion(response.data, gifUrl)
+                completion(response.data)
             }
         }
     }

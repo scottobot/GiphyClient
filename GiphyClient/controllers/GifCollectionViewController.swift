@@ -106,18 +106,25 @@ class GifCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gifViewCellIdentifier, for: indexPath) as! GifCollectionViewCell
         cell.backgroundColor = self.appColors.getRandomColor()
-        if let url = self.viewModel.url(index: indexPath.item) {
-            cell.url = url
-            self.viewModel.loadGif(index: indexPath.item) { (data, url) in
-                if let data = data, url == cell.url {
-                    cell.displayGif(data: data)
-                }
-            }
-        }
         if indexPath.item == self.viewModel.dataSize - 1 {
             self.loadMore(amount: self.pageSize)
         }
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let url = self.viewModel.url(index: indexPath.item) {
+            if let cacheData = GifCache.shared.retrieve(url) {
+                (cell as! GifCollectionViewCell).displayGif(data: cacheData)
+            }
+            else {
+                self.viewModel.loadGif(index: indexPath.item) { (data) in
+                    if let data = data, let cellToUpdate = collectionView.cellForItem(at: indexPath) as? GifCollectionViewCell {
+                        cellToUpdate.displayGif(data: data)
+                    }
+                }
+            }
+        }
     }
     
     func showConnectionError() {

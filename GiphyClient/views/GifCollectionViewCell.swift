@@ -12,7 +12,6 @@ import FLAnimatedImage
 
 class GifCollectionViewCell: UICollectionViewCell {
     var imageView: FLAnimatedImageView!
-    var url: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
