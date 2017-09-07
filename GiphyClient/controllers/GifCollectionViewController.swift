@@ -61,6 +61,7 @@ class GifCollectionViewController: UICollectionViewController {
     }
     
     @objc private func refreshGifs(sender: UIRefreshControl) {
+        self.view.isUserInteractionEnabled = false
         sender.endRefreshing()
         self.viewModel.reset()
         // fade out to make the refresh feel less abrupt
@@ -70,6 +71,7 @@ class GifCollectionViewController: UICollectionViewController {
             self.view.alpha = 1.0
             self.collectionView!.reloadData()
             self.loadMore(amount: self.initialPageSize)
+            self.view.isUserInteractionEnabled = true
         }
     }
     
